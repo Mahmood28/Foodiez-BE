@@ -2,6 +2,7 @@ const express = require("express");
 const db = require("./db/models/");
 const ingredientRoutes = require("./routes/ingredients");
 const categoryRoutes = require("./routes/categories");
+const recipeRoutes = require("./routes/recipes");
 const cors = require("cors");
 const app = express();
 const path = require("path");
@@ -11,12 +12,9 @@ console.log("__dirname", __dirname);
 app.use(cors());
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  console.log("HELLO");
-});
-
 app.use("/ingredients", ingredientRoutes);
 app.use("/categories", categoryRoutes);
+app.use("/recipes", recipeRoutes);
 app.use("/media", express.static(path.join(__dirname, "media")));
 
 app.use((req, res, next) => {
@@ -39,5 +37,3 @@ db.sequelize.sync();
 app.listen(8000);
 
 //yarn add cors sequelize sequelize-cli pg pg-hstore multer
-
-//test comment
