@@ -6,7 +6,7 @@ const {
   fetchCategory,
 } = require("../controllers/categoryControllers");
 const { Category } = require("../db/models");
-const upload = require("../middleware/multer");
+const upload = require("../middleware/multer.js");
 const router = express.Router();
 
 router.param("categoryId", async (req, res, next, categoryId) => {
