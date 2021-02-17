@@ -39,3 +39,5 @@ db.sequelize.sync();
 app.listen(8000);
 
 //yarn add cors sequelize sequelize-cli pg pg-hstore multer
+
+//test comment
