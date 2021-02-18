@@ -19,7 +19,7 @@ exports.categoryList = async (req, res, next) => {
       include: {
         model: Ingredient,
         as: "ingredients",
-        attributes: ["id"],
+        attributes: ["id", "name"],
       },
       attributes: {
         exclude: ["createdAt", "updatedAt"],
