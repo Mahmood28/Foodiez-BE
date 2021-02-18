@@ -34,14 +34,13 @@ exports.recipeList = async (req, res, next) => {
 exports.recipeCreate = async (req, res, next) => {
   try {
     const newRecipe = await Recipe.create(req.body[0]);
-    const Link = req.body[1].map((ingredientId) => {
-      return {
-        IngredientId: ingredientId,
-        RecipeId: newRecipe.id,
-      };
+    await newRecipe.addIngredients(
+      req.body[1].map((ingredient) => ingredient.id)
+    );
+    res.status(201).json({
+      name: newRecipe.name,
+      ingredients: req.body[1],
     });
-    Link.map(async (link) => await Recipe_Ingredients.create(link));
-    res.status(201).json(newRecipe);
   } catch (error) {
     next(error);
   }
